@@ -16,7 +16,8 @@ namespace FindMeAJob.Controllers
 {
     public class JobDTO
     {
-        public String URL { get; set; }
+        public String jobSearch { get; set; }
+        public String location { get; set; }
     }
 
     [Route("api/[controller]")]
@@ -88,8 +89,11 @@ namespace FindMeAJob.Controllers
         // POST: api/Jobs
         [HttpPost]
         [EnableCors("AllowAllHeaders")]
-        public async Task<ActionResult<Jobs>> PostJob(string jobSearch, string location)
+        public async Task<ActionResult<Jobs>> PostJob([FromBody]JobDTO data)
         {
+            String jobSearch = data.jobSearch;
+            String location = data.location;
+
             Jobs job = new Jobs();
             try
             {
