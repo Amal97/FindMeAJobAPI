@@ -10,6 +10,7 @@ using FindMeAJob.Helper;
 using FindMeAJob.DAL;
 using Microsoft.AspNetCore.JsonPatch;
 using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 
 namespace FindMeAJob.Controllers
 {
@@ -86,6 +87,7 @@ namespace FindMeAJob.Controllers
 
         // POST: api/Jobs
         [HttpPost]
+        [EnableCors("AllowAllHeaders")]
         public async Task<ActionResult<Jobs>> PostJob(string jobSearch, string location)
         {
             Jobs job = new Jobs();
