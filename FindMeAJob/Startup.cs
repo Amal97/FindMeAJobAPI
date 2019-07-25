@@ -15,6 +15,9 @@ using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
+using System.Web.Http;
+using System.Web.Http.Cors;
+
 namespace FindMeAJob
 {
     public class Startup
@@ -26,9 +29,24 @@ namespace FindMeAJob
 
         public IConfiguration Configuration { get; }
 
+        public static void Register(HttpConfiguration config)
+        {
+            // New code
+            config.EnableCors();
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
+            config.EnableCors(new EnableCorsAttribute("https://findmeajob.azurewebsites.net", "*", "*"));
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(
             options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<jobsContext>();
