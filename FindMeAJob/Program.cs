@@ -15,6 +15,8 @@ namespace FindMeAJob
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+            //Helper.JobHelper.testProgram();
+
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

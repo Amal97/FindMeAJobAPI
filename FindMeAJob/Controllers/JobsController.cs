@@ -89,16 +89,22 @@ namespace FindMeAJob.Controllers
         public async Task<ActionResult<Jobs>> PostJob(string jobSearch, string location)
         {
             Jobs job = new Jobs();
-
-            int length = JobHelper.jobLength(jobSearch, location);
-            for (int i = 0; i < length; i++)
+            try
             {
-                job = JobHelper.GetJobInfo(jobSearch, location)[i];
-                _context.Jobs.Add(job);
-                await _context.SaveChangesAsync();
+                int length = JobHelper.jobLength(jobSearch, location);
+                for (int i = 0; i < length; i++)
+                {
+                    job = JobHelper.GetJobInfo(jobSearch, location)[i];
+                    _context.Jobs.Add(job);
+                    await _context.SaveChangesAsync();
+                }
             }
-
-            return CreatedAtAction("GetJob", new { id = job.JobId }, job);
+            catch
+            {
+                return BadRequest("Invalid YouTube URL");
+            }
+            int k = job.JobId;
+            return CreatedAtAction("GetJobs", new { id = job.JobId }, job);
         }
 
 
