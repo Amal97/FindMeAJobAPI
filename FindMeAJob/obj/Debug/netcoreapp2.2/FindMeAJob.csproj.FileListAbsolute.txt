@@ -12,3 +12,17 @@ C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\FindMeAJob\obj\Debug
 C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.RazorTargetAssemblyInfo.cache
 C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.dll
 C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.pdb
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\bin\Debug\netcoreapp2.2\FindMeAJob.deps.json
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\bin\Debug\netcoreapp2.2\FindMeAJob.runtimeconfig.json
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\bin\Debug\netcoreapp2.2\FindMeAJob.runtimeconfig.dev.json
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\bin\Debug\netcoreapp2.2\FindMeAJob.dll
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\bin\Debug\netcoreapp2.2\FindMeAJob.pdb
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.csprojAssemblyReference.cache
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.csproj.CoreCompileInputs.cache
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.RazorAssemblyInfo.cache
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.RazorAssemblyInfo.cs
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.AssemblyInfoInputs.cache
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.AssemblyInfo.cs
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.RazorTargetAssemblyInfo.cache
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.dll
+C:\Users\Amal\Downloads\FindMeAJob\FindMeAJobAPI\FindMeAJob\obj\Debug\netcoreapp2.2\FindMeAJob.pdb

@@ -13205,11 +13205,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Amal\\Downloads\\FindMeAJob\\FindMeAJobAPI\\FindMeAJob\\FindMeAJob\\FindMeAJob.csproj",
+      "projectUniqueName": "C:\\Users\\Amal\\Downloads\\FindMeAJob\\FindMeAJobAPI\\FindMeAJob\\FindMeAJob.csproj",
       "projectName": "FindMeAJob",
-      "projectPath": "C:\\Users\\Amal\\Downloads\\FindMeAJob\\FindMeAJobAPI\\FindMeAJob\\FindMeAJob\\FindMeAJob.csproj",
+      "projectPath": "C:\\Users\\Amal\\Downloads\\FindMeAJob\\FindMeAJobAPI\\FindMeAJob\\FindMeAJob.csproj",
       "packagesPath": "C:\\Users\\Amal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Amal\\Downloads\\FindMeAJob\\FindMeAJobAPI\\FindMeAJob\\FindMeAJob\\obj\\",
+      "outputPath": "C:\\Users\\Amal\\Downloads\\FindMeAJob\\FindMeAJobAPI\\FindMeAJob\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
