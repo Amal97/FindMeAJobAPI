@@ -89,28 +89,34 @@ namespace FindMeAJob.Controllers
         // POST: api/Jobs
         [HttpPost]
         [EnableCors("AllowAllHeaders")]
-        public async Task<ActionResult<Jobs>> PostJob([FromBody]JobDTO data)
+        // public async Task<ActionResult<Jobs>> PostJob([FromBody]JobDTO data)                 (1)
+        public async Task<ActionResult<IEnumerable<Jobs>>> PostJob([FromBody]JobDTO data)
         {
             String jobSearch = data.jobSearch;
             String location = data.location;
 
-            Jobs job = new Jobs();
+            //Jobs job = new Jobs();
+            List<Jobs> job = new List<Jobs>();
             try
             {
                 int length = JobHelper.jobLength(jobSearch, location);
                 for (int i = 0; i < length; i++)
                 {
-                    job = JobHelper.GetJobInfo(jobSearch, location)[i];
-                    _context.Jobs.Add(job);
-                    await _context.SaveChangesAsync();
+                    job.Add( JobHelper.GetJobInfo(jobSearch, location)[i] );
+                   // job = JobHelper.GetJobInfo(jobSearch, location)[i];
+                    //_context.Jobs.Add(job);
+                    //await _context.SaveChangesAsync();
                 }
             }
             catch
             {
-                return BadRequest("Invalid YouTube URL");
+                return BadRequest("Invalid URL");
             }
-            int k = job.JobId;
-            return CreatedAtAction("GetJobs", new { id = job.JobId }, job);
+
+            return job;
+           // return await _context.Jobs.ToListAsync();
+
+           // return CreatedAtAction("GetJobs", new { id = job.JobId }, job);               (1)
         }
 
 
