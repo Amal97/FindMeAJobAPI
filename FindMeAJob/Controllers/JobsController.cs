@@ -132,13 +132,17 @@ namespace FindMeAJob.Controllers
                 {
                     return BadRequest("Invalid URL");
                 }
+            }
+            else
+            {
+                return BadRequest("No Valid URL");
 
             }
 
-           // return job;
-           // return await _context.Jobs.ToListAsync();
+             return job;
+            // return await _context.Jobs.ToListAsync();
 
-            return CreatedAtAction("GetJobs", new { id = 1 }, job); //               (1)
+           // return CreatedAtAction("GetJobs", new { id = 1 }, job); //               (1)
         }
 
 
