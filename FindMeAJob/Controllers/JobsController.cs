@@ -18,6 +18,7 @@ namespace FindMeAJob.Controllers
     {
         public String jobSearch { get; set; }
         public String location { get; set; }
+        public String from { get; set; }
     }
 
     [Route("api/[controller]")]
@@ -92,25 +93,46 @@ namespace FindMeAJob.Controllers
         // public async Task<ActionResult<Jobs>> PostJob([FromBody]JobDTO data)                 (1)
         public async Task<ActionResult<IEnumerable<Jobs>>> PostJob([FromBody]JobDTO data)
         {
+
             String jobSearch = data.jobSearch;
             String location = data.location;
-
-            //Jobs job = new Jobs();
+            String from = data.from;
             List<Jobs> job = new List<Jobs>();
-            try
+
+            if (from == "seek")
             {
-                int length = JobHelper.jobLength(jobSearch, location);
-                for (int i = 0; i < length; i++)
+                //Jobs job = new Jobs();
+                //List<Jobs> job = new List<Jobs>();
+                try
                 {
-                    job.Add( JobHelper.GetJobInfo(jobSearch, location)[i] );
-                   // job = JobHelper.GetJobInfo(jobSearch, location)[i];
-                    //_context.Jobs.Add(job);
-                    //await _context.SaveChangesAsync();
+                    //int length = JobHelper.jobLength(jobSearch, location);
+                    for (int i = 0; i < 10; i++)
+                    {
+                        job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
+                        // job = JobHelper.GetJobInfo(jobSearch, location)[i];
+                        //_context.Jobs.Add(job);
+                        //await _context.SaveChangesAsync();
+                    }
+                }
+                catch
+                {
+                    return BadRequest("Invalid URL");
                 }
             }
-            catch
+            else if(from == "indeed")
             {
-                return BadRequest("Invalid URL");
+                try
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
+                    }
+                }
+                catch
+                {
+                    return BadRequest("Invalid URL");
+                }
+
             }
 
             return job;
