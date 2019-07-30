@@ -135,10 +135,10 @@ namespace FindMeAJob.Controllers
 
             }
 
-            return job;
+           // return job;
            // return await _context.Jobs.ToListAsync();
 
-           // return CreatedAtAction("GetJobs", new { id = job.JobId }, job);               (1)
+            return CreatedAtAction("GetJobs", new { id = 1 }, job); //               (1)
         }
 
 
