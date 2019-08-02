@@ -100,19 +100,19 @@ namespace FindMeAJob.Controllers
             String jobSearch = data.jobSearch;
             String location = data.location;
             String from = data.from;
-            // List<Jobs> job = new List<Jobs>(); test
+            List<Jobs> newJobs = new List<Jobs>();
 
             if (from == "seek")
             {
                 Jobs job = new Jobs();
-                //List<Jobs> job = new List<Jobs>();
                 try
                 {
                     //int length = JobHelper.jobLength(jobSearch, location);
                     for (int i = 0; i < 10; i++)
                     {
-                     //   job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
+                         //job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
                          job = JobHelper.GetJobInfo(jobSearch, location, from)[i];
+                        newJobs.Add(job);
                         _context.Jobs.Add(job);
                         await _context.SaveChangesAsync();
                     }
@@ -142,8 +142,8 @@ namespace FindMeAJob.Controllers
 
             }
 
-             //return job;
-             return await _context.Jobs.ToListAsync();
+             return newJobs;
+             //return await _context.Jobs.ToListAsync();
 
            // return CreatedAtAction("GetJobs", new { id = job.JobId }, job);               (1)
         }
