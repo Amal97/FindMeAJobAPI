@@ -100,18 +100,30 @@ namespace FindMeAJob.Controllers
             String jobSearch = data.jobSearch;
             String location = data.location;
             String from = data.from;
+<<<<<<< HEAD
             // List<Jobs> job = new List<Jobs>(); test
+=======
+            //List<Jobs> job = new List<Jobs>();
+>>>>>>> cbd12f16d117f479dfa09e7a9cae6b92bcf51124
 
             if (from == "seek")
             {
                 Jobs job = new Jobs();
+<<<<<<< HEAD
                 //List<Jobs> job = new List<Jobs>();
+=======
+               // List<Jobs> job = new List<Jobs>();
+>>>>>>> cbd12f16d117f479dfa09e7a9cae6b92bcf51124
                 try
                 {
                     //int length = JobHelper.jobLength(jobSearch, location);
                     for (int i = 0; i < 10; i++)
                     {
+<<<<<<< HEAD
                      //   job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
+=======
+                        //job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
+>>>>>>> cbd12f16d117f479dfa09e7a9cae6b92bcf51124
                          job = JobHelper.GetJobInfo(jobSearch, location, from)[i];
                         _context.Jobs.Add(job);
                         await _context.SaveChangesAsync();
@@ -135,6 +147,7 @@ namespace FindMeAJob.Controllers
             //    {
             //        return BadRequest("Invalid URL");
             //    }
+<<<<<<< HEAD
             //}
             else
             {
@@ -144,8 +157,15 @@ namespace FindMeAJob.Controllers
 
              //return job;
              return await _context.Jobs.ToListAsync();
+=======
 
-           // return CreatedAtAction("GetJobs", new { id = 1 }, job); //               (1)
+            //}
+
+           // return job;
+            return await _context.Jobs.ToListAsync();
+>>>>>>> cbd12f16d117f479dfa09e7a9cae6b92bcf51124
+
+           // return CreatedAtAction("GetJobs", new { id = job.JobId }, job);               (1)
         }
 
 
