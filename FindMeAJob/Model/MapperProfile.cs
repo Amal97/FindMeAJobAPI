@@ -7,8 +7,8 @@ namespace FindMeAJob.Model
     {
         public MapperProfile()
         {
-            CreateMap<Jobs, JobDTO>();
-            CreateMap<JobDTO, Jobs>();
+            CreateMap<Jobs, JobsDTO>();
+            CreateMap<JobsDTO, Jobs>();
         }
     }
 }

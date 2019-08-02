@@ -169,12 +169,12 @@ namespace FindMeAJob.Controllers
         //PUT with PATCH to handle isFavourite
         [HttpPatch("update/{id}")]
         [EnableCors("AllowAllHeaders")]
-        public JobDTO Patch(int id, [FromBody]JsonPatchDocument<JobDTO> jobPatch)
+        public JobsDTO Patch(int id, [FromBody]JsonPatchDocument<JobsDTO> jobPatch)
         {
             //get original video object from the database
             Jobs originJob = jobRepository.GetJobsByID(id);
             //use automapper to map that to DTO object
-            JobDTO jobDTO = _mapper.Map<JobDTO>(originJob);
+            JobsDTO jobDTO = _mapper.Map<JobsDTO>(originJob);
             //apply the patch to that DTO
             jobPatch.ApplyTo(jobDTO);
             //use automapper to map the DTO back ontop of the database object

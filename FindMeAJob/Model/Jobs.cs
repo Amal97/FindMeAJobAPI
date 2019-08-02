@@ -32,7 +32,7 @@ namespace FindMeAJob.Model
     }
 
     [DataContract]
-    public class JobDTO
+    public class JobsDTO
     {
         [DataMember]
         public int JobId { get; set; }
