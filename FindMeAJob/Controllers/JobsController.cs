@@ -38,6 +38,7 @@ namespace FindMeAJob.Controllers
 
         // GET: api/Jobs
         [HttpGet]
+        [EnableCors("AllowAllHeaders")]
         public async Task<ActionResult<IEnumerable<Jobs>>> GetJobs()
         {
             return await _context.Jobs.ToListAsync();
@@ -45,6 +46,7 @@ namespace FindMeAJob.Controllers
 
         // GET: api/Jobs/5
         [HttpGet("{id}")]
+        [EnableCors("AllowAllHeaders")]
         public async Task<ActionResult<Jobs>> GetJobs(int id)
         {
             var jobs = await _context.Jobs.FindAsync(id);
@@ -59,6 +61,7 @@ namespace FindMeAJob.Controllers
 
         // PUT: api/Jobs/5
         [HttpPut("{id}")]
+        [EnableCors("AllowAllHeaders")]
         public async Task<IActionResult> PutJobs(int id, Jobs jobs)
         {
             if (id != jobs.JobId)
@@ -97,21 +100,21 @@ namespace FindMeAJob.Controllers
             String jobSearch = data.jobSearch;
             String location = data.location;
             String from = data.from;
-            List<Jobs> job = new List<Jobs>();
+            // List<Jobs> job = new List<Jobs>(); test
 
             if (from == "seek")
             {
-                //Jobs job = new Jobs();
+                Jobs job = new Jobs();
                 //List<Jobs> job = new List<Jobs>();
                 try
                 {
                     //int length = JobHelper.jobLength(jobSearch, location);
                     for (int i = 0; i < 10; i++)
                     {
-                        job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
-                        // job = JobHelper.GetJobInfo(jobSearch, location)[i];
-                        //_context.Jobs.Add(job);
-                        //await _context.SaveChangesAsync();
+                     //   job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
+                         job = JobHelper.GetJobInfo(jobSearch, location, from)[i];
+                        _context.Jobs.Add(job);
+                        await _context.SaveChangesAsync();
                     }
                 }
                 catch
@@ -119,28 +122,28 @@ namespace FindMeAJob.Controllers
                     return BadRequest("Invalid URL");
                 }
             }
-            else if(from == "indeed")
-            {
-                try
-                {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
-                    }
-                }
-                catch
-                {
-                    return BadRequest("Invalid URL");
-                }
-            }
+            //else if(from == "indeed")
+            //{
+            //    try
+            //    {
+            //        for (int i = 0; i < 10; i++)
+            //        {
+            //            job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
+            //        }
+            //    }
+            //    catch
+            //    {
+            //        return BadRequest("Invalid URL");
+            //    }
+            //}
             else
             {
                 return BadRequest("No Valid URL");
 
             }
 
-             return job;
-            // return await _context.Jobs.ToListAsync();
+             //return job;
+             return await _context.Jobs.ToListAsync();
 
            // return CreatedAtAction("GetJobs", new { id = 1 }, job); //               (1)
         }
@@ -148,6 +151,7 @@ namespace FindMeAJob.Controllers
 
         // DELETE: api/Jobs/5
         [HttpDelete("{id}")]
+        [EnableCors("AllowAllHeaders")]
         public async Task<ActionResult<Jobs>> DeleteJobs(int id)
         {
             var jobs = await _context.Jobs.FindAsync(id);
@@ -164,6 +168,7 @@ namespace FindMeAJob.Controllers
 
         //PUT with PATCH to handle isFavourite
         [HttpPatch("update/{id}")]
+        [EnableCors("AllowAllHeaders")]
         public JobDTO Patch(int id, [FromBody]JsonPatchDocument<JobDTO> jobPatch)
         {
             //get original video object from the database
