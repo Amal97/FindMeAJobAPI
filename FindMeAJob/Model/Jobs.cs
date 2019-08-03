@@ -53,7 +53,7 @@ namespace FindMeAJob.Model
         public string JobDescription { get; set; }
 
         [DataMember]
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
 
         [DataMember]
         public bool Applied { get; set; }

@@ -185,6 +185,38 @@ namespace FindMeAJob.Controllers
             return jobDTO;
         }
 
+        // GET api/Videos/SearchByTranscriptions/HelloWorld
+        [HttpGet("Search/{searchString}")]
+        public async Task<ActionResult<IEnumerable<Jobs>>> Search(string searchString)
+        {
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return BadRequest("Search string cannot be null or empty.");
+            }
+
+            // Choose transcriptions that has the phrase 
+            // var jobs = await _context.Jobs.Include(job => job.Applied).ToListAsync();
+
+            var jobs = await _context.Jobs.Include(job => job.Applied).Select(job => new Jobs
+            {
+                JobId = job.JobId,
+                JobTitle = job.JobTitle,
+                WebUrl = job.WebUrl,
+                CompanyName = job.CompanyName,
+                Location = job.Location,
+                JobDescription = job.JobDescription,
+                ImageUrl = job.ImageUrl,
+                Applied = job.Applied.Equals(true)
+            }).ToListAsync();
+
+            // Removes all videos with empty transcription
+            jobs.RemoveAll(job => job.Applied == false);
+            return Ok(jobs);
+
+        }
+
+
+
         private bool JobsExists(int id)
         {
             return _context.Jobs.Any(e => e.JobId == id);
