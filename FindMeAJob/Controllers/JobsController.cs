@@ -112,6 +112,7 @@ namespace FindMeAJob.Controllers
                     {
                          //job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
                          job = JobHelper.GetJobInfo(jobSearch, location, from)[i];
+
                         newJobs.Add(job);
                         _context.Jobs.Add(job);
                         await _context.SaveChangesAsync();
@@ -189,14 +190,7 @@ namespace FindMeAJob.Controllers
         [HttpGet("Applied/")]
         public async Task<ActionResult<IEnumerable<Jobs>>> Search()
         {
-            //if (String.IsNullOrEmpty(searchString))
-            //{
-            //    return BadRequest("Search string cannot be null or empty.");
-            //}
-
-            // Choose transcriptions that has the phrase 
-            // var jobs = await _context.Jobs.Include(job => job.Applied).ToListAsync();
-
+            await _context.Jobs.
             var jobs = await _context.Jobs.Include(job => job.Applied).Select(job => new Jobs
             {
                 JobId = job.JobId,
