@@ -186,13 +186,13 @@ namespace FindMeAJob.Controllers
         }
 
         // GET api/Videos/SearchByTranscriptions/HelloWorld
-        [HttpGet("Search/{searchString}")]
-        public async Task<ActionResult<IEnumerable<Jobs>>> Search(string searchString)
+        [HttpGet("Applied/")]
+        public async Task<ActionResult<IEnumerable<Jobs>>> Search()
         {
-            if (String.IsNullOrEmpty(searchString))
-            {
-                return BadRequest("Search string cannot be null or empty.");
-            }
+            //if (String.IsNullOrEmpty(searchString))
+            //{
+            //    return BadRequest("Search string cannot be null or empty.");
+            //}
 
             // Choose transcriptions that has the phrase 
             // var jobs = await _context.Jobs.Include(job => job.Applied).ToListAsync();
