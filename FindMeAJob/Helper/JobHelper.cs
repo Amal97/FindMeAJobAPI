@@ -34,7 +34,7 @@ namespace FindMeAJob.Helper
 
             var jobTitle = doc.DocumentNode.SelectNodes("//div[@class='title']").ToList();
             var description = doc.DocumentNode.SelectNodes("//div[@class='summary']").ToList();
-            var company = doc.DocumentNode.SelectNodes("//a[@class='turnstileLink']").ToList();
+            var company = doc.DocumentNode.SelectNodes("//span[@class='company']").ToList();
 
 
             String pattern = "href=\"(.*?).\"";
@@ -49,8 +49,17 @@ namespace FindMeAJob.Helper
                     title = title.Replace("\n", "").Trim();
                     String jobLink = "https://nz.indeed.com/" + match;
                     jobLink = CleanIndeedLink(jobLink);
-                    String companyName = company[i].InnerText;
-                    companyName = companyName.Replace("\n", "").Trim();
+                    String companyName;
+                    try
+                    {
+                        companyName = company[i].InnerText;
+                        companyName = companyName.Replace("\n", "").Trim();
+                    }
+                    catch
+                    {
+                        companyName = " ";
+                    }
+
                     String desc = description[i].InnerText;
                     desc = desc.Replace("\n", "");
                     desc = desc.Trim();

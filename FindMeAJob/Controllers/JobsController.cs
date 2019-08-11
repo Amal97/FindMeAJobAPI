@@ -93,26 +93,21 @@ namespace FindMeAJob.Controllers
         // POST: api/Jobs
         [HttpPost]
         [EnableCors("AllowAllHeaders")]
-        // public async Task<ActionResult<Jobs>> PostJob([FromBody]JobDTO data)                 (1)
         public async Task<ActionResult<IEnumerable<Jobs>>> PostJob([FromBody]JobDTO data)
         {
 
             String jobSearch = data.jobSearch;
             String location = data.location;
-            String from = data.from;
+            String from = data.from.ToLower() ;
             List<Jobs> newJobs = new List<Jobs>();
 
-            if (from == "seek")
-            {
-                Jobs job = new Jobs();
-                try
+            Jobs job = new Jobs();
+            try
                 {
-                    //int length = JobHelper.jobLength(jobSearch, location);
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 15; i++)
                     {
-                         //job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
-                         job = JobHelper.GetJobInfo(jobSearch, location, from)[i];
-
+                        job = JobHelper.GetJobInfo(jobSearch, location, from)[i];
+                        
                         newJobs.Add(job);
                         _context.Jobs.Add(job);
                         await _context.SaveChangesAsync();
@@ -122,31 +117,8 @@ namespace FindMeAJob.Controllers
                 {
                     return BadRequest("Invalid URL");
                 }
-            }
-            //else if(from == "indeed")
-            //{
-            //    try
-            //    {
-            //        for (int i = 0; i < 10; i++)
-            //        {
-            //            job.Add(JobHelper.GetJobInfo(jobSearch, location, from)[i]);
-            //        }
-            //    }
-            //    catch
-            //    {
-            //        return BadRequest("Invalid URL");
-            //    }
-            //}
-            else
-            {
-                return BadRequest("No Valid URL");
-
-            }
 
              return newJobs;
-             //return await _context.Jobs.ToListAsync();
-
-           // return CreatedAtAction("GetJobs", new { id = job.JobId }, job);               (1)
         }
 
 
@@ -172,7 +144,7 @@ namespace FindMeAJob.Controllers
         [EnableCors("AllowAllHeaders")]
         public JobsDTO Patch(int id, [FromBody]JsonPatchDocument<JobsDTO> jobPatch)
         {
-            //get original video object from the database
+            //get original job object from the database
             Jobs originJob = jobRepository.GetJobsByID(id);
             //use automapper to map that to DTO object
             JobsDTO jobDTO = _mapper.Map<JobsDTO>(originJob);
@@ -180,17 +152,15 @@ namespace FindMeAJob.Controllers
             jobPatch.ApplyTo(jobDTO);
             //use automapper to map the DTO back ontop of the database object
             _mapper.Map(jobDTO, originJob);
-            //update video in the database
+            //update job in the database
             _context.Update(originJob);
             _context.SaveChanges();
             return jobDTO;
         }
 
-        // GET api/Videos/SearchByTranscriptions/HelloWorld
         [HttpGet("Applied/")]
         public async Task<ActionResult<IEnumerable<Jobs>>> Search()
         {
-            await _context.Jobs.
             var jobs = await _context.Jobs.Include(job => job.Applied).Select(job => new Jobs
             {
                 JobId = job.JobId,
@@ -203,13 +173,11 @@ namespace FindMeAJob.Controllers
                 Applied = job.Applied.Equals(true)
             }).ToListAsync();
 
-            // Removes all videos with empty transcription
+            // Removes all jobs with empty transcription
             jobs.RemoveAll(job => job.Applied == false);
             return Ok(jobs);
 
         }
-
-
 
         private bool JobsExists(int id)
         {
